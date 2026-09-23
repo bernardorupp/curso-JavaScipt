@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Amostra</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Cadastro da Amostra</h1>
+
+    </header>
+    <section>
+        <div>
+            <p>Código: <input type="text" id="txtcode">
+            </p>
+            <p>Local: <input type="text" id="txtloc">
+            </p>
+            <p>Tipo: <input type="text" id="txttype">
+            </p>
+            <p>Massa (g): <input type="number" id="txtm">
+            </p>
+            <p>Teor (%): <input type="number" id="txtteor">
+            </p>
+        </div>
+
+        <div id="res"> 
+            
+        </div>
+    </section>
+    <footer>
+        <div>
+            <p><input type="button" value="Adicionar" onclick="adicionar()">
+            </p>
+            <p>&copy; <strong>Bernardo Rupp</strong></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
