@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Governo Brasileiro</title>
+</head>
+<body>
+    <h1>Verificando sua nacionalidade!</h1>
+    <p>Qual eh o seu pais de origem?</p>
+    <input type="text" id="txtpais">
+    <input type="button" value = "Verificar" onclick="verificar()">
+    <div id="res">
+
+    </div>
+    <script>
+        function verificar() {
+            var txtp = window.document.querySelector('input#txtpais')
+            var res = window.document.querySelector('div#res')
+            var pais = txtp.value
+            if (pais == 'Brasil') {
+                res.innerHTML = '<p>Voce eh Brasileiro!</p>'
+            } else {
+                res.innerHTML = '<p>Voce eh Estrangeiro!</p>'
+            }
+            
+        }
+    </script>
+</body>
+</html>
