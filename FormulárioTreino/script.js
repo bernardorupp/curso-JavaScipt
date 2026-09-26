@@ -20,11 +20,11 @@ function adicionar(){
         window.alert ('[ERRO] A amostra com este código ja foi adicionada!')
        } else {
         var amostra = {
-            Código: cod.value,
-            Local: loc.value,
-            Tipo: tipo.value,
-            Massa: m,
-            Teor: t
+            codigo: cod.value,
+            local: loc.value,
+            tipo: tipo.value,
+            massa: m,
+            teor: t
 
         }
         amostras.push(amostra)
@@ -34,22 +34,8 @@ function adicionar(){
         tipo.value = ''
         massa.value = ''
         teor.value = ''
-
-        var lista = ``
-
-        for (var i = 0; i < amostras.length; i++) {
-            var a = amostras[i]
-            console.log(a.codigo)        
-
-            lista +=  `<p>O código da amostra é ${a.codigo}</p>
-                      <p>A amostra foi encontrada no(a) ${a.Local}</p>
-                      <p>O tipo da amostra é ${a.Tipo}</p>
-                      <p>Tem massa de ${a.Massa} g</p>
-                      <p>O seu teor é ${a.Teor} %</p>`
-        }
-
-            res.innerHTML = lista
-        }
+        mostrarAmostras()
+    }
 
     }
 
@@ -64,3 +50,56 @@ function codigoExiste(codigo) {
 
     return false
 }
+
+function removerAmostra(codigo) {
+    for (var i = 0; i < amostras.length; i++) {
+        var a = amostras[i]
+
+        if (a.codigo == codigo) {
+            amostras.splice(i, 1)
+            mostrarAmostras()
+            return
+        }
+    }
+
+    return false
+}
+
+function mostrarAmostras() {
+    var res = document.querySelector('div#res')
+    var lista = ``
+
+    for (var i = 0; i < amostras.length; i++) {
+        var a = amostras[i]
+
+        lista += `<p>O código da amostra é ${a.codigo}</p>
+                  <button onclick="removerAmostra('${a.codigo}')">Remover</button>
+                  <p>A amostra foi encontrada em/no(a) ${a.local}</p>
+                  <p>O tipo da amostra é ${a.tipo}</p>
+                  <p>Tem massa de ${a.massa} g</p>
+                  <p>O seu teor é ${a.teor} %</p>`
+    }
+
+    res.innerHTML = lista
+}
+
+function pesquisarAmostra() {
+    var pesq = document.getElementById('txtpesquisa')
+    var codigo = pesq.value
+    var res = document.querySelector('div#res')
+
+    for (var i = 0; i < amostras.length; i++) {
+        var a = amostras[i]
+
+        if (a.codigo == codigo) {
+            res.innerHTML = `<p>O código encontrado é ${a.codigo}</p>
+                             <p>A amostra foi encontrada em/no(a) ${a.local}</p>
+                             <p>A amostra encontrada é ${a.tipo}</p>
+                             <p>Tem massa de ${a.massa} g</p>
+                             <p>O seu teor é ${a.teor} %</p>`
+        return  
+        }
+    }
+    res.innerHTML = 'Nenhuma amostra foi encontrada!'
+}
+
