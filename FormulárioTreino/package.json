@@ -1,0 +1,17 @@
+{
+  "name": "formulario-treino",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "node_9e1bb1d802aab.tmp.js",
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint script.js"
+},
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0"
+  }
+}

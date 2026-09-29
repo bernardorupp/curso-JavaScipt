@@ -7,7 +7,6 @@ function adicionar(){
     var tipo = document.getElementById('txttype')
     var massa = document.getElementById('txtm')
     var teor = document.getElementById('txtteor')
-    var res = document.querySelector('div#res')
 
     var m = Number(massa.value)
     var t = Number(teor.value)
@@ -38,6 +37,8 @@ function adicionar(){
     }
 
     }
+    var add = document.getElementById('txtadd')
+    add.onclick = adicionar
 
 function codigoExiste(codigo) {
     for (var i = 0; i < amostras.length; i++) {
@@ -73,7 +74,7 @@ function mostrarAmostras() {
         var a = amostras[i]
 
         lista += `<p>O código da amostra é ${a.codigo}</p>
-                  <button onclick="removerAmostra('${a.codigo}')">Remover</button>
+                  <button class="btn-remover" data-codigo="${a.codigo}">Remover</button>
                   <p>A amostra foi encontrada em/no(a) ${a.local}</p>
                   <p>O tipo da amostra é ${a.tipo}</p>
                   <p>Tem massa de ${a.massa} g</p>
@@ -81,6 +82,14 @@ function mostrarAmostras() {
     }
 
     res.innerHTML = lista
+
+    var botoes = document.querySelectorAll('.btn-remover')
+
+    for(i = 0; i < botoes.length; i++) {
+        botoes[i].onclick = function() {
+            removerAmostra(this.dataset.codigo)
+        }
+    }
 }
 
 function pesquisarAmostra() {
@@ -102,4 +111,5 @@ function pesquisarAmostra() {
     }
     res.innerHTML = 'Nenhuma amostra foi encontrada!'
 }
-
+    var pesq = document.getElementById('pesq')
+    pesq.onclick = pesquisarAmostra
