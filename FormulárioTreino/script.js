@@ -1,5 +1,12 @@
 var amostras = []
 
+var dados = localStorage.getItem('amostras')
+
+if (dados != null) {
+    amostras = JSON.parse(dados)
+}
+
+mostrarAmostras()
 
 function adicionar(){
     var cod = document.getElementById('txtcode')
@@ -28,6 +35,10 @@ function adicionar(){
         }
         amostras.push(amostra)
 
+        var dados = JSON.stringify(amostras)
+
+        localStorage.setItem('amostras', dados)
+
         cod.value = ''
         loc.value = ''
         tipo.value = ''
@@ -44,7 +55,7 @@ function codigoExiste(codigo) {
     for (var i = 0; i < amostras.length; i++) {
         var a = amostras[i]
 
-        if (a.codigo == codigo) {
+        if (a.codigo.toUpperCase() == codigo.toUpperCase()) {
             return true
         }
     }
@@ -56,9 +67,14 @@ function removerAmostra(codigo) {
     for (var i = 0; i < amostras.length; i++) {
         var a = amostras[i]
 
-        if (a.codigo == codigo) {
+        if (a.codigo.toUpperCase() == codigo.toUpperCase()) {
             amostras.splice(i, 1)
+
+            var dados = JSON.stringify(amostras)
+            localStorage.setItem('amostras', dados)
+
             mostrarAmostras()
+
             return
         }
     }
@@ -73,12 +89,26 @@ function mostrarAmostras() {
     for (var i = 0; i < amostras.length; i++) {
         var a = amostras[i]
 
+        var img = document.createElement('img')
+        img.setAttribute('class', 'img-amostra')
+
+        if (a.tipo == 'Esmeralda') {
+        img.setAttribute('src', 'esmeralda.png')
+    } else if (a.tipo == 'Ouro') {
+        img.setAttribute('src', 'ouro.png')
+    } else if (a.tipo == 'Prata') {
+        img.setAttribute('src', 'prata.png')
+    } else if (a.tipo == 'Diamante') {
+        img.setAttribute('src', 'diamante.png')
+    }
         lista += `<p>O código da amostra é ${a.codigo}</p>
                   <button class="btn-remover" data-codigo="${a.codigo}">Remover</button>
                   <p>A amostra foi encontrada em/no(a) ${a.local}</p>
                   <p>O tipo da amostra é ${a.tipo}</p>
                   <p>Tem massa de ${a.massa} g</p>
                   <p>O seu teor é ${a.teor} %</p>`
+
+        lista += img.outerHTML
     }
 
     res.innerHTML = lista
@@ -113,3 +143,35 @@ function pesquisarAmostra() {
 }
     var pesq = document.getElementById('pesq')
     pesq.onclick = pesquisarAmostra
+
+function calcularMediaTeor() {
+    if (amostras.length == 0) {
+        window.alert('[ERRO] Não é possível calcular a média!')
+        return false
+    }
+
+    var soma = 0
+
+    for (var i = 0; i < amostras.length; i++) {
+        var a = amostras[i]
+        soma = soma + a.teor
+    }
+
+    var media = soma/amostras.length
+
+    return media
+
+}
+
+var botaoMedia = document.getElementById('media')
+var stats = document.getElementById('stats')
+
+botaoMedia.onclick = function () {
+    var resultado = calcularMediaTeor()
+
+    if (resultado == false) {
+        stats.innerHTML = `<p>Não é possível calcular a média</p>`
+    } else {
+        stats.innerHTML = `<p>A média de teores é ${resultado.toFixed(2)} %</p>`
+    }
+}

@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h1>Cadastro da Amostra</h1>
+        <h1>Cadastro de Amostras Preciosas</h1>
 
     </header>
     <section>
@@ -17,7 +17,14 @@
             </p>
             <p>Local: <input type="text" id="txtloc">
             </p>
-            <p>Tipo: <input type="text" id="txttype">
+            <p>Tipo: 
+                <select id="txttype">
+                    <option value="" selected disabled>Selecione o tipo</option>
+                    <option>Ouro</option>
+                    <option>Esmeralda</option>
+                    <option>Diamante</option>
+                    <option>Prata</option>
+                </select>
             </p>
             <p>Massa (g): <input type="number" id="txtm">
             </p>
@@ -28,6 +35,9 @@
         <div id="res"> 
             
         </div>
+        <div id="stats">
+
+        </div>
     </section>
     <footer>
         <div>
@@ -35,6 +45,7 @@
             </p>
             <p>Pesquisar Amostra: <input type="text" id="txtpesquisa"></p>
             <input type="button" id="pesq" value="Pesquisar">
+            <input type="button" value="Calcular Média" id="media">
             <p>&copy; <strong>Bernardo Rupp</strong></p>
         </div>
     </footer>

@@ -6,7 +6,8 @@ module.exports = [
         languageOptions: {
             globals: {
                 document: 'readonly',
-                window: 'readonly'
+                window: 'readonly',
+                 localStorage: 'readonly'
             }
         },
         rules: {
