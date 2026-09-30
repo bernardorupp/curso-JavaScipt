@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Perfuração</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Calcular a Perfuração</h1>
+
+    </header>
+    <section>
+        <div> 
+            <p>Diâmetro do Furo (mm): <input type="number" name="diam" id="txtd">
+            </p>
+            <p>Profundidade do Furo (m): <input type="number" name="prof" id="txtp">
+            </p>
+            <p>Número de Furos: <input type="number" name="furos" id="txtn">
+            </p>
+            <p>Densidade do Explosivo (Kg/m³): <input type="number" name="densidade" id="txtden">
+            </p>
+            <p>Comprimento do tampão (m): <input type="number" name="tampao" id="txttamp">
+            </p>
+            <p>Afastamento (m): <input type="number" name="afastamento" id="txtafast">
+            </p>
+            <p>Espaçamento (m): <input type="number" name="espacamento" id="txtesp">
+            </p>
+            <p><input type="button" value ="Calcular" onclick="calcular()">
+            </p>
+        </div>
+        <div id="res">
+
+        </div>
